@@ -1,18 +1,37 @@
+import { HashRouter as Router, Route, Routes, NavLink, Navigate } from "react-router-dom";
 
-import { Home } from './pages/Home';
+import { AboutUs } from "./pages/AboutUs";
+import { HomePage } from "./pages/HomePage";
+import { EmailIndex } from "./pages/EmailIndex";
+// import { useState } from "react";
+
 export function App() {
-
+//   const [page, setPage] = useState("HomePage");
     return (
+        <Router>
         <section className='main-app'>
-            <header className="app-header">
-                <section className="container">
-                    <h1>Log111</h1>
-                </section>
-            </header>
+        <header className="app-header">
+        <section className="container">
+          <NavLink className="nav-link" to="HomePage">
+            Home Page
+          </NavLink>
+          <NavLink className="nav-link" to="EmailIndex">
+            Email Index
+          </NavLink>
+          <NavLink className="nav-link" to="AboutUs">
+            About Us
+          </NavLink>
+        </section>
+      </header>
 
-            <main className='container'>
-                <Home />
-            </main>
+      <main className="container">
+      <Routes>
+        <Route path="/HomePage" element={<HomePage />} />
+        <Route path="/EmailIndex" element={<EmailIndex />} />
+        <Route path="/AboutUs" element={<AboutUs />} />
+        <Route index element={<Navigate to='/HomePage' />} />
+      </Routes>
+    </main>
 
             <footer>
                 <section className="container">
@@ -21,7 +40,7 @@ export function App() {
             </footer>
         </section>
 
-
+        </Router>
     )
 }
 

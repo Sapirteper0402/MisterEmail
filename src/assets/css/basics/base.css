@@ -96,7 +96,12 @@ input {
 }
 
 
-a.active {
+/* a.active {
     color: rgb(84, 17, 147);
     font-weight: 600;
+} */
+
+a.nav-link {
+    color: white;
+    padding: 0 2%;
 }

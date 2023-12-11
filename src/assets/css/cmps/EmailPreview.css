@@ -1,0 +1,47 @@
+
+/* ul.EmailPreview{
+    list-style: none;
+}
+
+section.Email-Preview {
+    background-color: #FDFDFD;
+    border: 1.5px solid #EDEDED;
+    padding: 1%;
+    border-radius: 4px;
+    display: flex;
+    transition: background-color 0.3s, box-shadow 0.3s, font-weight 0.3s;
+    font-weight: 500;
+} */
+
+section.Email-Open {
+    background-color:#EBEFF8;
+    border: 1.5px solid #EDEDED;
+    padding: 1%;
+    border-radius: 4px;
+    display: flex;
+    transition: background-color 0.3s, box-shadow 0.3s, font-weight 0.3s;
+    font-weight: 400; 
+}
+
+section.Email-notOpen {
+    background-color: #FDFDFD;
+    border: 1.5px solid #EDEDED;
+    padding: 1%;
+    border-radius: 4px;
+    display: flex;
+    transition: background-color 0.3s, box-shadow 0.3s, font-weight 0.3s;
+    font-weight: 500;
+}
+
+section.Email-notOpen:hover, section.Email-Open:hover {
+    /* background-color: white; */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+    z-index: 1;
+}
+
+.Email-Open > span, .Email-notOpen > span {
+    flex-grow: 1;
+    text-align: left;
+    /* font-weight: 500; */
+}
+
