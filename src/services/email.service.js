@@ -35,12 +35,15 @@ _createEmails()
 async function query(filterBy) {
     const emails = await storageService.query(STORAGE_KEY);
     let filteredEmails = emails;
+
     if (filterBy) {
         const { txt, isRead } = filterBy;
-        if (isRead !== null) {
-            filteredEmails = filteredEmails.filter(email => email.subject.toLowerCase().includes(txt.toLowerCase()) 
-            || email.body.toLowerCase().includes(txt.toLowerCase())
-            && email.isRead == isRead); 
+
+        if (isRead != null) {
+            filteredEmails = filteredEmails.filter(email => email.isRead === isRead 
+                &&( email.subject.toLowerCase().includes(txt.toLowerCase()) 
+                || email.body.toLowerCase().includes(txt.toLowerCase())));
+                console.log(filteredEmails.length);
         }else{
             filteredEmails = filteredEmails.filter(email =>
                 email.subject.toLowerCase().includes(txt.toLowerCase())
@@ -51,10 +54,6 @@ async function query(filterBy) {
     }
     return filteredEmails;
 }
-
-        // var { status, txt, isRead } = filterBy;
-        // filteredEmails = filteredEmails.filter(email => email.status.toLowerCase() == status.toLowerCase()
-        //  && email.subject.toLowerCase().includes(txt.toLowerCase()) && email.isRead == isRead);   
 
 function getById(id) {
     return storageService.get(STORAGE_KEY, id)
@@ -77,14 +76,13 @@ function save(emailToSave) {
     return {
         // type: '',
         txt: '',
-        isRead: null
-        // isRead: null
+        isRead: undefined
 
     }
 }
 
 
-function createEmail(subject = '', body = '', isRead = false, isStarred = false, sentAt = '1551133930594', removedAt = null, from = 'momo@momo.com', to = 'user@appsus.com') {
+function createEmail(subject = '', body = '', isRead = null, isStarred = false, sentAt = '1551133930594', removedAt = null, from = 'momo@momo.com', to = 'user@appsus.com') {
     return {
         id: utilService.makeId(),
         subject: subject,

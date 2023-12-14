@@ -3,6 +3,7 @@ import { emailService } from "../services/email.service";
 import { EmailList } from "../cmps/EmailList";
 // import { EmailFilter } from "../cmps/EmailFilter";
 import { SearchFilter } from "../cmps/SearchFilter";
+import { EmailFilter } from "../cmps/EmailFilter";
 // import { EmailLists } from "../cmps/EmailLists";
 
 export function EmailIndex() {
@@ -16,6 +17,7 @@ export function EmailIndex() {
   async function loadEmail() {
     const emails = await emailService.query(filterBy);
     setEmails(emails);
+    
   }
 
   function onSetFilter(filterBy){
@@ -27,6 +29,7 @@ const { txt, isRead } = filterBy;
   return (
     <section className="EmailIndex">
       <SearchFilter filterBy={{txt}} onSetFilter={onSetFilter}/>
+      <EmailFilter filterBy={{isRead}} onSetFilter={onSetFilter}/>
       <EmailList emails={emails}/>
     </section>
   );
