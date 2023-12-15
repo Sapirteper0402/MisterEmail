@@ -6,16 +6,13 @@ export function EmailFilter({ filterBy, onSetFilter }) {
 
     useEffect(() => {
         onSetFilter(filterByToEdit)
-        console.log(filterByToEdit);
     }, [filterByToEdit])
 
 
     function handleSelectChange(ev){
         const val = ev.target.value;
-        console.log('val1', val);
-        const isReadValue = val === "true";
+        const isReadValue = val === 'true' ? true : val === 'false' ? false : undefined;
         setFilterByToEdit(prevFilter => ({ ...prevFilter, isRead: isReadValue }));
-        console.log('vafilterByToEditl', filterByToEdit);
     }
 
 
@@ -24,7 +21,7 @@ export function EmailFilter({ filterBy, onSetFilter }) {
         <form>
             <label htmlFor="isRead" style={{ display: "none" }}>Filter by Read Status:</label>
             <select id="isRead" name="isRead" value={isRead} onChange={handleSelectChange} className="filter-select">
-                <option value="">All</option>
+                <option value="undefined">All</option>
                 <option value="true">Read</option>
                 <option value="false">Unread</option>
             </select>

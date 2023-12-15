@@ -43,7 +43,6 @@ async function query(filterBy) {
             filteredEmails = filteredEmails.filter(email => email.isRead === isRead 
                 &&( email.subject.toLowerCase().includes(txt.toLowerCase()) 
                 || email.body.toLowerCase().includes(txt.toLowerCase())));
-                console.log(filteredEmails.length);
         }else{
             filteredEmails = filteredEmails.filter(email =>
                 email.subject.toLowerCase().includes(txt.toLowerCase())

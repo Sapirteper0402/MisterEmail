@@ -13,7 +13,7 @@ section.Email-Preview {
     font-weight: 500;
 } */
 
-section.Email-Open {
+section.email-read {
     background-color:#EBEFF8;
     border: 1.5px solid #EDEDED;
     padding: 1%;
@@ -23,7 +23,7 @@ section.Email-Open {
     font-weight: 400; 
 }
 
-section.Email-notOpen {
+section.email-unread {
     background-color: #FDFDFD;
     border: 1.5px solid #EDEDED;
     padding: 1%;
@@ -33,13 +33,13 @@ section.Email-notOpen {
     font-weight: 500;
 }
 
-section.Email-notOpen:hover, section.Email-Open:hover {
+section.email-unread:hover, section.email-read:hover {
     /* background-color: white; */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
     z-index: 1;
 }
 
-.Email-Open > span, .Email-notOpen > span {
+.email-read > span, .email-unread > span {
     flex-grow: 1;
     text-align: left;
     /* font-weight: 500; */
