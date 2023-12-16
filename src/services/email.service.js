@@ -37,7 +37,7 @@ async function query(filterBy) {
     let filteredEmails = emails;
 
     if (filterBy) {
-        const { txt, isRead } = filterBy;
+        const { status, txt, isRead } = filterBy;
 
         if (isRead != null) {
             filteredEmails = filteredEmails.filter(email => email.isRead === isRead 
@@ -49,6 +49,19 @@ async function query(filterBy) {
                 || email.body.toLowerCase().includes(txt.toLowerCase())
             );
         }
+           switch (status){
+            case 'inbox': 
+            filteredEmails = filteredEmails.filter(email => email.to === 'user@appsus.com');
+            return filteredEmails;
+
+            case 'star': 
+            filteredEmails = filteredEmails.filter(email => email.isStarred === true);
+            return filteredEmails;
+            
+            case 'sent': 
+            filteredEmails = filteredEmails.filter(email => email.from === 'user@appsus.com');
+            return filteredEmails;
+           }
            
     }
     return filteredEmails;
@@ -73,15 +86,14 @@ function save(emailToSave) {
 
  function getDefaultFilter() {
     return {
-        // type: '',
+        status: 'inbox',
         txt: '',
         isRead: undefined
-
     }
 }
 
 
-function createEmail(subject = '', body = '', isRead = null, isStarred = false, sentAt = '1551133930594', removedAt = null, from = 'momo@momo.com', to = 'user@appsus.com') {
+function createEmail(subject = '', body = '', isRead = undefined, isStarred = false, sentAt = '1551133930594', removedAt = null, from = 'momo@momo.com', to = 'user@appsus.com') {
     return {
         id: utilService.makeId(),
         subject: subject,
@@ -147,8 +159,18 @@ function _createEmails() {
                 isStarred: true,
                 sentAt : 1551133930594,
                 removedAt : null,
-                from: 'adi.Marom@gmail.com',
+                from: 'user@appsus.com',
                 to: 'user@appsus.com'
+            },
+            {   id: utilService.makeId(),
+                subject: 'hey you2',
+                body: 'Would love to catch up sometimes5',
+                isRead: true,
+                isStarred: true,
+                sentAt : 1551133930594,
+                removedAt : null,
+                from: 'user@appsus.com',
+                to: 'sapir@appsus.com'
             }
         ]
         utilService.saveToStorage(STORAGE_KEY, emails)

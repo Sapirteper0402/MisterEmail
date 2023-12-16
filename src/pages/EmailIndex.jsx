@@ -4,6 +4,7 @@ import { EmailList } from "../cmps/EmailList";
 // import { EmailFilter } from "../cmps/EmailFilter";
 import { SearchFilter } from "../cmps/SearchFilter";
 import { EmailFilter } from "../cmps/EmailFilter";
+import { EmailFolderList } from "../cmps/EmailFolderList";
 // import { EmailLists } from "../cmps/EmailLists";
 
 export function EmailIndex() {
@@ -17,7 +18,6 @@ export function EmailIndex() {
   async function loadEmail() {
     const emails = await emailService.query(filterBy);
     setEmails(emails);
-    
   }
 
   function onSetFilter(filterBy){
@@ -25,9 +25,10 @@ export function EmailIndex() {
   }
 
   if (!emails) return <div>Loading...</div>;
-const { txt, isRead } = filterBy;
+const { status, txt, isRead } = filterBy;
   return (
     <section className="EmailIndex">
+      <EmailFolderList filterBy={{status}} onSetFilter={onSetFilter}/>
       <SearchFilter filterBy={{txt}} onSetFilter={onSetFilter}/>
       <EmailFilter filterBy={{isRead}} onSetFilter={onSetFilter}/>
       <EmailList emails={emails}/>
