@@ -20,18 +20,24 @@ export function EmailIndex() {
     setEmails(emails);
   }
 
-  function onSetFilter(filterBy){
-    setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy}));
+  function onSetFilter(filterBy) {
+    setFilterBy((prevFilter) => ({ ...prevFilter, ...filterBy }));
   }
 
   if (!emails) return <div>Loading...</div>;
-const { status, txt, isRead } = filterBy;
+  const { status, txt, isRead } = filterBy;
   return (
     <section className="EmailIndex">
-      <EmailFolderList filterBy={{status}} onSetFilter={onSetFilter}/>
-      <SearchFilter filterBy={{txt}} onSetFilter={onSetFilter}/>
-      <EmailFilter filterBy={{isRead}} onSetFilter={onSetFilter}/>
-      <EmailList emails={emails}/>
+      <section className="header-EIndex">
+        <SearchFilter filterBy={{ txt }} onSetFilter={onSetFilter} />
+      </section>
+      <section className="aside-EIndex">
+        <EmailFolderList filterBy={{ status }} onSetFilter={onSetFilter} />
+      </section>
+      <section className="main-EIndex">
+        <EmailFilter filterBy={{ isRead }} onSetFilter={onSetFilter} />
+        <EmailList emails={emails} />
+      </section>
     </section>
   );
 }

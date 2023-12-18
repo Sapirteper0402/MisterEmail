@@ -1,0 +1,52 @@
+
+.EmailFolderList{
+    padding: 3%;
+    /* background-color: antiquewhite; */
+    height: 100vh;
+}
+
+
+.EmailFolderList .btn-compose{
+    background-color: #C2E7FF;
+    padding: 1em 2em;
+    border-radius: 15px;
+    border: none;
+    margin-bottom: 0.5em;
+}
+
+.EmailFolderList .btn-compose:hover {
+    background-color: #b3ddf9;
+}
+
+.EmailFolderList hr {
+    /* width: 90%; */
+    border: 1px solid #dcd9d9;
+}
+
+.EmailFolderList .ulListFolder{
+    padding: 0;
+    /* margin: 0; */
+    list-style-type: none;
+}
+
+.EmailFolderList .ulListFolder>li {
+    padding: 0.5em;
+}
+
+
+.buttonListFolder button{
+    width: 100%;
+    display: block;
+    padding: 0.5em 1em;
+    margin: 0.5em 0;
+    /* margin: 0 auto; */
+    border-radius: 30px;
+    border: none;
+    background-color: #F1F6F9;
+    text-align: left;
+}
+
+.buttonListFolder button:hover {
+    background-color: #C8DAF1;
+    font-weight: 500;
+}

@@ -8,39 +8,34 @@ import { EmailIndex } from "./pages/EmailIndex";
 export function App() {
 //   const [page, setPage] = useState("HomePage");
     return (
-        <Router>
+      <Router>
+      
         <section className='main-app'>
-        <header className="app-header">
-        <section className="container">
-          <NavLink className="nav-link" to="HomePage">
-            Home Page
-          </NavLink>
-          <NavLink className="nav-link" to="EmailIndex">
-            Email Index
-          </NavLink>
-          <NavLink className="nav-link" to="AboutUs">
-            About Us
-          </NavLink>
-        </section>
-      </header>
+          <header className="app-header">
+            <section className="container">
+              <NavLink className="nav-link" to="HomePage">Home Page</NavLink>
+              <NavLink className="nav-link" to="EmailIndex">Email Index</NavLink>
+              <NavLink className="nav-link" to="AboutUs">About Us</NavLink>
+            </section>
+          </header>
 
-      <main className="container">
-      <Routes>
-        <Route path="/HomePage" element={<HomePage />} />
-        <Route path="/EmailIndex" element={<EmailIndex />} />
-        <Route path="/AboutUs" element={<AboutUs />} />
-        <Route index element={<Navigate to='/HomePage' />} />
-      </Routes>
-    </main>
+          <main className="container">
+            <Routes>
+              <Route path="/HomePage" element={<HomePage />} />
+              <Route path="/EmailIndex" element={<EmailIndex />} />
+              <Route path="/AboutUs" element={<AboutUs />} />
+              <Route index element={<Navigate to='/HomePage' />} />
+            </Routes>
+          </main>
 
-            <footer>
-                <section className="container">
-                    Mails 2023 &copy;
-                </section>
-            </footer>
+          <footer>
+            <section className="container">
+                Mails 2023 &copy;
+            </section>
+          </footer>
         </section>
 
-        </Router>
+      </Router>
     )
 }
 
