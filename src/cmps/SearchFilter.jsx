@@ -17,7 +17,7 @@ export function SearchFilter({ filterBy, onSetFilter }) {
  const { txt } = filterByToEdit;
     return (
         <form>
-            <input onChange={handleChange} id="txt" value={txt} name="txt" type="text" placeholder="Search"/>
+            <input className="search-input" onChange={handleChange} id="txt" value={txt} name="txt" type="text" placeholder="Search"/>
         </form>
   );
 }

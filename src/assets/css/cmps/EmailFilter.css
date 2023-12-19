@@ -23,4 +23,13 @@
 }
 
 
+.search-input{
+    padding: 1em 2em;
+    border-radius: 7px;
+    border: none;
+    margin-bottom: 1em;
+    background-color: #E3EBF4;
+}
+
+
 
