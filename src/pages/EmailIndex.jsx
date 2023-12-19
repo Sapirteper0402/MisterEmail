@@ -24,6 +24,11 @@ export function EmailIndex() {
     setFilterBy((prevFilter) => ({ ...prevFilter, ...filterBy }));
   }
 
+  async function onSetStar(newEmail){
+     await emailService.save(newEmail);
+     loadEmail();
+  }
+
   if (!emails) return <div>Loading...</div>;
   const { status, txt, isRead } = filterBy;
   return (
@@ -36,7 +41,7 @@ export function EmailIndex() {
       </section>
       <section className="main-EIndex">
         <EmailFilter filterBy={{ isRead }} onSetFilter={onSetFilter} />
-        <EmailList emails={emails} />
+        <EmailList emails={emails} onSetStar={onSetStar} />
       </section>
     </section>
   );

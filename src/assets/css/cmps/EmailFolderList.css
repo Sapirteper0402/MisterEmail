@@ -12,6 +12,7 @@
     border-radius: 15px;
     border: none;
     margin-bottom: 0.5em;
+    /* margin-left: 0px; */
 }
 
 .EmailFolderList .btn-compose:hover {
@@ -23,15 +24,14 @@
     border: 1px solid #dcd9d9;
 }
 
-.EmailFolderList .ulListFolder{
+/* .EmailFolderList .ulListFolder{
     padding: 0;
-    /* margin: 0; */
     list-style-type: none;
 }
 
 .EmailFolderList .ulListFolder>li {
     padding: 0.5em;
-}
+} */
 
 
 .buttonListFolder button{

@@ -45,3 +45,31 @@ section.email-unread:hover, section.email-read:hover {
     /* font-weight: 500; */
 }
 
+
+
+
+
+.star-btn {
+    background: none;
+    border: none;
+    /* cursor: pointer; */
+  }
+
+  .star-btn .color-star {
+    width: 20px; 
+    height: 20px;
+    fill: #ffc107;
+    transition: fill 0.3s ease;
+  }
+
+  .star-btn .uncolor-star {
+    width: 20px;
+    height: 20px;
+    fill: #ddd; 
+    transition: fill 0.3s ease;
+  }
+
+  .star-btn .uncolor-star:hover {
+    fill: #ffc107;
+  }
+
