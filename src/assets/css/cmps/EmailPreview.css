@@ -13,36 +13,51 @@ section.Email-Preview {
     font-weight: 500;
 } */
 
-section.email-read {
+article.email-read {
     background-color:#EBEFF8;
     border: 1.5px solid #EDEDED;
-    padding: 1%;
+    padding: 0.5em;
     border-radius: 4px;
-    display: flex;
-    transition: background-color 0.3s, box-shadow 0.3s, font-weight 0.3s;
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: 0.2fr 1fr 3fr 0.5fr;
+    grid-template-areas: "star from subject date";
+    gap: 5px;
+    /* transition: background-color 0.3s, box-shadow 0.3s, font-weight 0.3s; */
     font-weight: 400; 
 }
 
-section.email-unread {
+article.email-unread {
     background-color: #FDFDFD;
     border: 1.5px solid #EDEDED;
-    padding: 1%;
+    padding: 0.5em;
     border-radius: 4px;
-    display: flex;
-    transition: background-color 0.3s, box-shadow 0.3s, font-weight 0.3s;
+    /* display: flex; */
+    display: grid;
+    grid-template-columns: 0.2fr 1fr 3fr 0.5fr;
+    grid-template-areas: "star from subject date";
+    gap: 5px;
+    /* transition: background-color 0.3s, box-shadow 0.3s, font-weight 0.3s; */
     font-weight: 500;
 }
 
-section.email-unread:hover, section.email-read:hover {
+article.email-unread:hover, article.email-read:hover {
     /* background-color: white; */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
-    z-index: 1;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    /* box-shadow: inset 1px 0 0 #dadce0,
+            inset -1px 0 0 #dadce0,
+            0 1px 1px 0 rgba(60, 64, 67, 0.1),
+            0 1px 2px 1px rgba(60, 64, 67, 0.07); */
+    text-decoration: none;
 }
 
+
 .email-read > span, .email-unread > span {
-    flex-grow: 1;
-    text-align: left;
+    /* flex-grow: 1;
+    text-align: left; */
     /* font-weight: 500; */
+    text-decoration: none;
 }
 
 
@@ -53,6 +68,7 @@ section.email-unread:hover, section.email-read:hover {
     background: none;
     border: none;
     /* cursor: pointer; */
+    grid-area: star;
   }
 
   .star-btn .color-star {
@@ -73,3 +89,17 @@ section.email-unread:hover, section.email-read:hover {
     fill: #ffc107;
   }
 
+
+
+  .email-from {
+    grid-area: from;
+  }
+
+  .email-subject {
+    grid-area: subject;
+  }
+
+  .email-date {
+    grid-area: date;
+    /* text-align: right; */
+  }

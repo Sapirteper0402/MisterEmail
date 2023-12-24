@@ -35,6 +35,7 @@ _createEmails()
 async function query(filterBy) {
     const emails = await storageService.query(STORAGE_KEY);
     let filteredEmails = emails;
+    const unreadCount = emails.filter(email => (email.to === 'user@appsus.com') && email.isRead === false);
 
     if (filterBy) {
         const { status, txt, isRead } = filterBy;
@@ -52,19 +53,22 @@ async function query(filterBy) {
            switch (status){
             case 'inbox': 
             filteredEmails = filteredEmails.filter(email => email.to === 'user@appsus.com');
-            return filteredEmails;
+            return {emails: filteredEmails, unreadCount: unreadCount.length};
+            // return filteredEmails;
 
             case 'star': 
             filteredEmails = filteredEmails.filter(email => email.isStarred === true);
-            return filteredEmails;
+            return {emails: filteredEmails, unreadCount: unreadCount.length};
+            // return filteredEmails;
             
             case 'sent': 
             filteredEmails = filteredEmails.filter(email => email.from === 'user@appsus.com');
-            return filteredEmails;
+            return {emails: filteredEmails, unreadCount: unreadCount.length};
+            // return filteredEmails;
            }
            
     }
-    return filteredEmails;
+    return {emails: filteredEmails, unreadCount: unreadCount.length};
 }
 
 function getById(id) {
@@ -93,14 +97,14 @@ function save(emailToSave) {
 }
 
 
-function createEmail(subject = '', body = '', isRead = undefined, isStarred = false, sentAt = '1551133930594', removedAt = null, from = 'momo@momo.com', to = 'user@appsus.com') {
+function createEmail(subject = '', body = '', isRead = undefined, isStarred = false, removedAt = null, from = 'momo@momo.com', to = 'user@appsus.com') {
     return {
         id: utilService.makeId(),
         subject: subject,
         body: body,
         isRead: isRead,
         isStarred: isStarred,
-        sentAt: sentAt,
+        sentAt: Date.now(),
         removedAt: removedAt,
         from: from,
         to: to
@@ -112,62 +116,62 @@ function _createEmails() {
     if (!emails || !emails.length) {
         emails = [
 
-            {   id: utilService.makeId(),
+            {   id: 'e101',
                 subject: 'Miss you!',
                 body: 'Would love to catch up sometimes1',
                 isRead: false,
                 isStarred: false,
-                sentAt : 1551133930594,
+                sentAt : '2021-11-03T00:00:00.000Z',
                 removedAt : null,
                 from: 'momo@momo.com',
                 to: 'user@appsus.com'
             },
-            {   id: utilService.makeId(),
+            {   id: 'e102',
                 subject: 'vacation in Berlin',
                 body: 'Would love to catch up sometimes2',
                 isRead: true,
                 isStarred: true,
-                sentAt : 1551133930594,
+                sentAt : '2022-05-05T00:00:00.000Z',
                 removedAt : null,
                 from: 'sapir.teper@gmail.com',
                 to: 'user@appsus.com'
             },
-            {   id: utilService.makeId(),
+            {   id: 'e103',
                 subject: 'trip to Canada',
                 body: 'Would love to catch up sometimes3',
                 isRead: false,
                 isStarred: true,
-                sentAt : 1551133930594,
+                sentAt : '2023-10-12T00:00:00.000Z',
                 removedAt : null,
                 from: 'momo@momo.com',
                 to: 'user@appsus.com'
             },
-            {   id: utilService.makeId(),
+            {   id: 'e104',
                 subject: 'where are you now?',
                 body: 'Would love to catch up sometimes4',
                 isRead: false,
                 isStarred: false,
-                sentAt : 1551133930594,
+                sentAt : '2023-10-14T00:00:00.000Z',
                 removedAt : null,
                 from: 'roni@gmail.com',
                 to: 'user@appsus.com'
             },
-            {   id: utilService.makeId(),
+            {   id: 'e105',
                 subject: 'hey you',
                 body: 'Would love to catch up sometimes5',
                 isRead: true,
                 isStarred: true,
-                sentAt : 1551133930594,
+                sentAt : '2023-12-24T00:00:00.000Z',
                 removedAt : null,
                 from: 'user@appsus.com',
                 to: 'user@appsus.com'
             },
-            {   id: utilService.makeId(),
+            {   id: 'e106',
                 subject: 'hey you2',
                 body: 'Would love to catch up sometimes5',
                 isRead: true,
                 isStarred: true,
-                sentAt : 1551133930594,
+                sentAt : '2023-10-17T00:00:00.000Z',
                 removedAt : null,
                 from: 'user@appsus.com',
                 to: 'sapir@appsus.com'

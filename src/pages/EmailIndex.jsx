@@ -10,23 +10,32 @@ import { EmailFolderList } from "../cmps/EmailFolderList";
 export function EmailIndex() {
   const [emails, setEmails] = useState(null);
   const [filterBy, setFilterBy] = useState(emailService.getDefaultFilter());
+  const [unreadCount, SetunreadCount] = useState(0);
 
   useEffect(() => {
     loadEmail();
-  }, [filterBy]);
+  }, [filterBy, unreadCount]);
 
   async function loadEmail() {
-    const emails = await emailService.query(filterBy);
-    setEmails(emails);
+    try {
+      const {emails, unreadCount} = await emailService.query(filterBy);
+
+      setEmails(emails);
+      SetunreadCount(unreadCount);
+    } catch (error) {
+      console.log("Faild to load emails: ", error);
+    }
   }
 
   function onSetFilter(filterBy) {
     setFilterBy((prevFilter) => ({ ...prevFilter, ...filterBy }));
   }
 
-  async function onSetStar(newEmail){
-     await emailService.save(newEmail);
-     loadEmail();
+  async function onSetStar(newEmail) {
+    console.log('בחוץ');
+    console.log(newEmail.isRead);
+    await emailService.save(newEmail);
+    loadEmail();
   }
 
   if (!emails) return <div>Loading...</div>;
@@ -37,7 +46,11 @@ export function EmailIndex() {
         <SearchFilter filterBy={{ txt }} onSetFilter={onSetFilter} />
       </section>
       <section className="aside-EIndex">
-        <EmailFolderList filterBy={{ status }} onSetFilter={onSetFilter} />
+        <EmailFolderList
+          filterBy={{ status }}
+          unreadCount={unreadCount}
+          onSetFilter={onSetFilter}
+        />
       </section>
       <section className="main-EIndex">
         <EmailFilter filterBy={{ isRead }} onSetFilter={onSetFilter} />

@@ -1,8 +1,9 @@
 
 .EmailFolderList{
-    padding: 3%;
+    /* padding: 3%; */
     /* background-color: antiquewhite; */
     height: 100vh;
+    padding-right: 4%;
 }
 
 
@@ -17,36 +18,34 @@
 
 .EmailFolderList .btn-compose:hover {
     background-color: #b3ddf9;
+    box-shadow: 0 1px 2px 0 #0000, 0 1px 3px 1px #0000;
 }
 
 .EmailFolderList hr {
-    /* width: 90%; */
+    width: 90%;
     border: 1px solid #dcd9d9;
+    /* padding-right: 8%; */
+    float: left;
 }
-
-/* .EmailFolderList .ulListFolder{
-    padding: 0;
-    list-style-type: none;
-}
-
-.EmailFolderList .ulListFolder>li {
-    padding: 0.5em;
-} */
-
 
 .buttonListFolder button{
-    width: 100%;
+    width: 95%;
     display: block;
     padding: 0.5em 1em;
     margin: 0.5em 0;
     /* margin: 0 auto; */
-    border-radius: 30px;
+    /* border-radius: 30px; */
+    border-radius: 0 30px 30px 0;
     border: none;
     background-color: #F1F6F9;
     text-align: left;
 }
 
-.buttonListFolder button:hover {
+.buttonListFolder button:hover, .buttonListFolder .active {
     background-color: #C8DAF1;
     font-weight: 500;
+}
+
+.inbox-count {
+    float: right;
 }

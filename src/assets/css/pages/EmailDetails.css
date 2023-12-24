@@ -1,29 +1,26 @@
-.EmailIndex{
-    /* background-color: #F1F6F9; */
+
+
+/* .email-details {
     display: grid;
-    /* grid-template-columns: 1fr 3fr; */
     grid-template-columns: 220px 1fr;
     grid-template-rows: auto 1fr;
     grid-template-areas:
         "a h"
         "a m";
-
 }
 
 
-
-.EmailIndex .header-EIndex {
+.email-details .header-EIndex {
     grid-area: h;
 }
 
-.EmailIndex .aside-EIndex {
+.Emailemail-detailsIndex .aside-EIndex {
     grid-area: a;
 }
 
-.EmailIndex .main-EIndex {
+.email-details .main-EIndex {
     grid-area: m;
     background-color: white;
     border-radius: 15px;
     padding: 1%;
-}
-
+} */

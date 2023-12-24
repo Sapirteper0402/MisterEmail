@@ -3,6 +3,7 @@ import { HashRouter as Router, Route, Routes, NavLink, Navigate } from "react-ro
 import { AboutUs } from "./pages/AboutUs";
 import { HomePage } from "./pages/HomePage";
 import { EmailIndex } from "./pages/EmailIndex";
+import { EmailDetails } from "./pages/EmailDetails";
 // import { useState } from "react";
 
 export function App() {
@@ -23,6 +24,7 @@ export function App() {
             <Routes>
               <Route path="/HomePage" element={<HomePage />} />
               <Route path="/EmailIndex" element={<EmailIndex />} />
+              <Route path="/EmailIndex/:emailId" element={<EmailDetails />} />
               <Route path="/AboutUs" element={<AboutUs />} />
               <Route index element={<Navigate to='/HomePage' />} />
             </Routes>
