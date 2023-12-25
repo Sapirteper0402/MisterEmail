@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useNavigate } from "react-router"
 import { emailService } from "../services/email.service";
-import { EmailFolderList } from "../cmps/EmailFolderList";
+// import { EmailFolderList } from "../cmps/EmailFolderList";
 
 export function EmailDetails() {
   const params = useParams();
   const [email, setEmail] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     loadEmail();
@@ -22,8 +24,14 @@ export function EmailDetails() {
   }
 
   async function onRemoveEmail() {
-    await emailService.remove(email.id);
-    // Navigate(`/EmailIndex`);
+    try {
+      await emailService.remove(email.id);
+      console.log(email.id);
+      navigate(`/EmailIndex`);
+    } catch (error) {
+      console.log("error:", error);
+    }
+
   }
 
   if (!email) return <div>Loding email...</div>;

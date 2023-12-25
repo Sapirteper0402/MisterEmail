@@ -60,36 +60,17 @@ article.email-unread:hover, article.email-read:hover {
     text-decoration: none;
 }
 
+.color-star, .uncolor-star:hover{
+  color: #ffc107;
+      /* cursor: pointer; */
+  /* transition: fill 0.3s ease; */
+}
 
-
-
-
-.star-btn {
-    background: none;
-    border: none;
-    /* cursor: pointer; */
-    grid-area: star;
-  }
-
-  .star-btn .color-star {
-    width: 20px; 
-    height: 20px;
-    fill: #ffc107;
-    transition: fill 0.3s ease;
-  }
-
-  .star-btn .uncolor-star {
-    width: 20px;
-    height: 20px;
-    fill: #ddd; 
-    transition: fill 0.3s ease;
-  }
-
-  .star-btn .uncolor-star:hover {
-    fill: #ffc107;
-  }
-
-
+.uncolor-star{
+  color: #c1c1c1;
+  /* cursor: pointer; */
+  /* transition: fill 0.3s ease; */
+}
 
   .email-from {
     grid-area: from;

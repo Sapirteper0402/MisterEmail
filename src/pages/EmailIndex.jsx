@@ -31,9 +31,7 @@ export function EmailIndex() {
     setFilterBy((prevFilter) => ({ ...prevFilter, ...filterBy }));
   }
 
-  async function onSetStar(newEmail) {
-    console.log('בחוץ');
-    console.log(newEmail.isRead);
+  async function onSetStarAndRead(newEmail) {
     await emailService.save(newEmail);
     loadEmail();
   }
@@ -54,7 +52,7 @@ export function EmailIndex() {
       </section>
       <section className="main-EIndex">
         <EmailFilter filterBy={{ isRead }} onSetFilter={onSetFilter} />
-        <EmailList emails={emails} onSetStar={onSetStar} />
+        <EmailList emails={emails} onSetStarAndRead={onSetStarAndRead} />
       </section>
     </section>
   );
