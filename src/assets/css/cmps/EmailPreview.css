@@ -1,19 +1,5 @@
 
-/* ul.EmailPreview{
-    list-style: none;
-}
-
-section.Email-Preview {
-    background-color: #FDFDFD;
-    border: 1.5px solid #EDEDED;
-    padding: 1%;
-    border-radius: 4px;
-    display: flex;
-    transition: background-color 0.3s, box-shadow 0.3s, font-weight 0.3s;
-    font-weight: 500;
-} */
-
-article.email-read {
+.email-read {
     background-color:#EBEFF8;
     border: 1.5px solid #EDEDED;
     padding: 0.5em;
@@ -27,7 +13,7 @@ article.email-read {
     font-weight: 400; 
 }
 
-article.email-unread {
+.email-unread {
     background-color: #FDFDFD;
     border: 1.5px solid #EDEDED;
     padding: 0.5em;
@@ -41,7 +27,7 @@ article.email-unread {
     font-weight: 500;
 }
 
-article.email-unread:hover, article.email-read:hover {
+.email-unread:hover, .email-read:hover {
     /* background-color: white; */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     z-index: 2;
@@ -54,22 +40,17 @@ article.email-unread:hover, article.email-read:hover {
 
 
 .email-read > span, .email-unread > span {
-    /* flex-grow: 1;
-    text-align: left; */
-    /* font-weight: 500; */
     text-decoration: none;
 }
 
 .color-star, .uncolor-star:hover{
   color: #ffc107;
       /* cursor: pointer; */
-  /* transition: fill 0.3s ease; */
 }
 
 .uncolor-star{
   color: #c1c1c1;
   /* cursor: pointer; */
-  /* transition: fill 0.3s ease; */
 }
 
   .email-from {
@@ -82,5 +63,6 @@ article.email-unread:hover, article.email-read:hover {
 
   .email-date {
     grid-area: date;
-    /* text-align: right; */
+    text-align: right;
+    padding-inline-end: 0.5em;
   }

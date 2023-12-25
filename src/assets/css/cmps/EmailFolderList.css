@@ -14,6 +14,9 @@
     border: none;
     margin-bottom: 0.5em;
     /* margin-left: 0px; */
+
+    display: flex;
+    align-items: center;
 }
 
 .EmailFolderList .btn-compose:hover {
@@ -39,6 +42,10 @@
     border: none;
     background-color: #F1F6F9;
     text-align: left;
+
+    display: flex;
+    align-items: center;
+    
 }
 
 .buttonListFolder button:hover, .buttonListFolder .active {
@@ -48,4 +55,9 @@
 
 .inbox-count {
     float: right;
+}
+
+.icon-list {
+    margin-inline-end: 5px;
+    color: #3a3a3a;
 }

@@ -18,14 +18,17 @@ export function EmailPreview({ email, onSetStarAndRead }) {
     onSetStarAndRead(emailStarredAndRead);
   }, [emailStarredAndRead]);
 
-  function handleStarClick() {
+  function handleStarClick(ev) {
+    if (ev) ev.preventDefault();
+
     setEmailStarredAndRead((prevEmail) => ({
       ...prevEmail,
       isStarred: !email.isStarred,
     }));
   }
 
-  function handleReadClick() {
+  function handleReadClick(ev) {
+    if (ev) ev.stopPropagation();
     if(email.isRead != true){
       setEmailStarredAndRead((prevEmail) => ({
         ...prevEmail,
@@ -45,11 +48,11 @@ export function EmailPreview({ email, onSetStarAndRead }) {
   // לזכור!! 
   // onClick={handleReadClick} לא עובד
 
-  // <Link to={`/EmailIndex/${email.id}`} >
+
   return (
     <Link to={`/EmailIndex/${email.id}`} >
-    <article className={emailPreviewClass} onClick={handleReadClick}>
-        <BsStarFill className={starPreviewClass} onClick={handleStarClick}/>
+    <article className={emailPreviewClass}>
+        <BsStarFill className={starPreviewClass} onClick={(ev) => handleStarClick(ev)}/>
         <span className="email-from">{email.from}</span>
         <span className="email-subject">{truncatedSubject}</span>
         <span className="email-date">{utilService.formatSentAt(email.sentAt)}</span>
@@ -57,6 +60,6 @@ export function EmailPreview({ email, onSetStarAndRead }) {
     </Link>
   );
 }
-// </Link>
 
 
+// <article className={emailPreviewClass} onClick={() => handleReadClick(ev)}></article>

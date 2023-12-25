@@ -23,13 +23,30 @@
 }
 
 
-.search-input{
+
+
+.search-form {
+    position: relative;
+}
+
+.search-container {
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    left: 9px; 
+    top: 40%;
+    transform: translateY(-50%);
+    color: #808080; /* Adjust the color as needed */
+}
+
+.search-input {
     padding: 1em 2em;
     border-radius: 7px;
     border: none;
     margin-bottom: 1em;
     background-color: #E3EBF4;
+    padding-left: 30px; /* Ensure enough space for the icon */
 }
-
-
 
