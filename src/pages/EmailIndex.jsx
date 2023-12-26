@@ -5,6 +5,7 @@ import { EmailList } from "../cmps/EmailList";
 import { SearchFilter } from "../cmps/SearchFilter";
 import { EmailFilter } from "../cmps/EmailFilter";
 import { EmailFolderList } from "../cmps/EmailFolderList";
+import { Outlet } from "react-router-dom";
 // import { EmailLists } from "../cmps/EmailLists";
 
 export function EmailIndex() {
@@ -30,10 +31,29 @@ export function EmailIndex() {
   function onSetFilter(filterBy) {
     setFilterBy((prevFilter) => ({ ...prevFilter, ...filterBy }));
   }
+  // onSetStarAndRead
+  async function onUpdateEmail(newEmail) {
+    try{
+      const saveEmail = await emailService.save(newEmail);
+      // לשנות הסטייט במקום לטעון מחדש
+      // loadEmail();
+      setEmails((prevEmails) => prevEmails.map(email => email.id === saveEmail.id ? saveEmail : email));
+    }catch (error) {
+      console.log("Faild to save email", error);
+    }
 
-  async function onSetStarAndRead(newEmail) {
-    await emailService.save(newEmail);
-    loadEmail();
+  }
+
+
+  async function onAddEmail(newEmail) {
+    try{
+      await emailService.save(newEmail);
+       loadEmail();
+      // const saveEmail = await emailService.save(newEmail);
+      // setEmails((prevEmails) => [...prevEmails, saveEmail]);
+    }catch (error) {
+      console.log("Faild to save email", error); 
+    }
   }
 
   if (!emails) return <div>Loading...</div>;
@@ -44,16 +64,14 @@ export function EmailIndex() {
         <SearchFilter filterBy={{ txt }} onSetFilter={onSetFilter} />
       </section>
       <section className="aside-EIndex">
-        <EmailFolderList
-          filterBy={{ status }}
-          unreadCount={unreadCount}
-          onSetFilter={onSetFilter}
-        />
+        <EmailFolderList filterBy={{ status }} unreadCount={unreadCount} onSetFilter={onSetFilter} />
       </section>
       <section className="main-EIndex">
         <EmailFilter filterBy={{ isRead }} onSetFilter={onSetFilter} />
-        <EmailList emails={emails} onSetStarAndRead={onSetStarAndRead} />
+        <EmailList emails={emails} onUpdateEmail={onUpdateEmail} />
       </section>
+
+      <Outlet context={{ onAddEmail }} />
     </section>
   );
 }

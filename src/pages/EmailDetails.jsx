@@ -13,11 +13,16 @@ export function EmailDetails() {
     loadEmail();
   }, [params.emailId]);
 
+
   async function loadEmail() {
     try {
       const email = await emailService.getById(params.emailId);
+      // Confirmation that isRead us true
+      if(email.isRead != true){
+        email.isRead = true;
+        await emailService.save(email);
+      }
       setEmail(email);
-    //   if(email.isRead != true) { email.isRead = true}
     } catch (error) {
       console.log("error:", error);
     }

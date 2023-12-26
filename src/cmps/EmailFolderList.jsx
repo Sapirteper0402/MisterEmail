@@ -6,6 +6,7 @@ import { GoTrash } from "react-icons/go";
 import { IoDocumentOutline } from "react-icons/io5";
 import { HiOutlineInbox } from "react-icons/hi";
 import { GoPencil } from "react-icons/go";
+import { Link } from "react-router-dom";
 
 export function EmailFolderList({ filterBy, unreadCount, onSetFilter }) {
   const [filterByToEdit, setFilterByToEdit] = useState(filterBy);
@@ -21,7 +22,9 @@ export function EmailFolderList({ filterBy, unreadCount, onSetFilter }) {
 
   return (
     <section className="EmailFolderList">
-      <button className="btn-compose"><GoPencil className="icon-list"/> Compose</button>
+      <Link to="/EmailIndex/add">
+        <button className="btn-compose"><GoPencil className="icon-list"/> Compose</button>
+      </Link>
       <hr />
       <div className="buttonListFolder">
         <button onClick={() => onChooseFolder("inbox")} className={filterByToEdit.status === "inbox" ? "active" : ""}><HiOutlineInbox className="icon-list"/> Inbox<span className="inbox-count">{unreadCount != 0 && unreadCount}</span></button>

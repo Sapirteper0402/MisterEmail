@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { utilService } from "../services/util.service";
 import { BsStarFill } from "react-icons/bs";
 
-export function EmailPreview({ email, onSetStarAndRead }) {
+export function EmailPreview({ email, onUpdateEmail }) {
 
   const truncatedSubject =
     email.subject.length > 20
@@ -11,42 +11,20 @@ export function EmailPreview({ email, onSetStarAndRead }) {
       : email.subject;
   const emailPreviewClass = email.isRead ? "email-read" : "email-unread";
   const starPreviewClass = email.isStarred ? "color-star" : "uncolor-star";
-  const [emailStarredAndRead, setEmailStarredAndRead] = useState(email);
+  const [emailStarred, setEmailStarred] = useState(email);
   // const [emailUnRead, setemailUnRead] = useState(email);
 
   useEffect(() => {
-    onSetStarAndRead(emailStarredAndRead);
-  }, [emailStarredAndRead]);
+    onUpdateEmail(emailStarred);
+  }, [emailStarred]);
 
   function handleStarClick(ev) {
     if (ev) ev.preventDefault();
-
-    setEmailStarredAndRead((prevEmail) => ({
+    setEmailStarred((prevEmail) => ({
       ...prevEmail,
       isStarred: !email.isStarred,
     }));
   }
-
-  function handleReadClick(ev) {
-    if (ev) ev.stopPropagation();
-    if(email.isRead != true){
-      setEmailStarredAndRead((prevEmail) => ({
-        ...prevEmail,
-        isRead: true,
-      }));
-    }
-  }
- 
-  // const sentAtDate = new Date(email.sentAt);
-  // const sentAtFormatted = sentAtDate.toLocaleString('en-US', {
-  //   // year: 'numeric',
-  //   month: 'long',
-  //   day: 'numeric',
-  // });
-
-
-  // לזכור!! 
-  // onClick={handleReadClick} לא עובד
 
 
   return (
@@ -61,5 +39,3 @@ export function EmailPreview({ email, onSetStarAndRead }) {
   );
 }
 
-
-// <article className={emailPreviewClass} onClick={() => handleReadClick(ev)}></article>

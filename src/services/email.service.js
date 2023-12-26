@@ -11,7 +11,10 @@ export const emailService = {
 }
 
 const STORAGE_KEY = 'emails'
-
+const loggedinUser = {
+    email: 'user@appsus.com',
+    fullname: 'Mahatma Appsus'
+   }
 // const loggedinUser = {
 //     email: 'user@appsus.com',
 //     fullname: 'Mahatma Appsus'
@@ -52,7 +55,7 @@ async function query(filterBy) {
         }
            switch (status){
             case 'inbox': 
-            filteredEmails = filteredEmails.filter(email => email.to === 'user@appsus.com');
+            filteredEmails = filteredEmails.filter(email => email.to === loggedinUser.email);
             return {emails: filteredEmails, unreadCount: unreadCount.length};
             // return filteredEmails;
 
@@ -62,7 +65,7 @@ async function query(filterBy) {
             // return filteredEmails;
             
             case 'sent': 
-            filteredEmails = filteredEmails.filter(email => email.from === 'user@appsus.com');
+            filteredEmails = filteredEmails.filter(email => email.from === loggedinUser.email);
             return {emails: filteredEmails, unreadCount: unreadCount.length};
             // return filteredEmails;
            }
@@ -97,9 +100,9 @@ function save(emailToSave) {
 }
 
 
-function createEmail(subject = '', body = '', isRead = undefined, isStarred = false, removedAt = null, from = 'momo@momo.com', to = 'user@appsus.com') {
+function createEmail(subject = '', body = '', isRead = undefined, isStarred = false, removedAt = null, from = loggedinUser.email, to = '') {
     return {
-        id: utilService.makeId(),
+        // id: utilService.makeId(),
         subject: subject,
         body: body,
         isRead: isRead,
@@ -119,11 +122,11 @@ function _createEmails() {
             {   id: 'e101',
                 subject: 'Miss you!',
                 body: 'Would love to catch up sometimes1',
-                isRead: false,
+                isRead: true,
                 isStarred: false,
                 sentAt : '2021-11-03T00:00:00.000Z',
                 removedAt : null,
-                from: 'momo@momo.com',
+                from: loggedinUser.email,
                 to: 'user@appsus.com'
             },
             {   id: 'e102',
@@ -139,11 +142,11 @@ function _createEmails() {
             {   id: 'e103',
                 subject: 'trip to Canada',
                 body: 'Would love to catch up sometimes3',
-                isRead: false,
+                isRead: true,
                 isStarred: true,
                 sentAt : '2023-10-12T00:00:00.000Z',
                 removedAt : null,
-                from: 'momo@momo.com',
+                from: loggedinUser.email,
                 to: 'user@appsus.com'
             },
             {   id: 'e104',
@@ -163,7 +166,7 @@ function _createEmails() {
                 isStarred: true,
                 sentAt : '2023-12-24T00:00:00.000Z',
                 removedAt : null,
-                from: 'user@appsus.com',
+                from: loggedinUser.email,
                 to: 'user@appsus.com'
             },
             {   id: 'e106',
@@ -173,7 +176,7 @@ function _createEmails() {
                 isStarred: true,
                 sentAt : '2023-10-17T00:00:00.000Z',
                 removedAt : null,
-                from: 'user@appsus.com',
+                from: loggedinUser.email,
                 to: 'sapir@appsus.com'
             }
         ]
