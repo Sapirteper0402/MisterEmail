@@ -5,22 +5,30 @@ import { EmailList } from "../cmps/EmailList";
 import { SearchFilter } from "../cmps/SearchFilter";
 import { EmailFilter } from "../cmps/EmailFilter";
 import { EmailFolderList } from "../cmps/EmailFolderList";
-import { Outlet } from "react-router-dom";
+import { Outlet, useSearchParams } from "react-router-dom";
 // import { EmailLists } from "../cmps/EmailLists";
 
 export function EmailIndex() {
+      // 3 להוציא מהערה
+  // const [searchParams, setSearchParams] = useSearchParams();
   const [emails, setEmails] = useState(null);
+
+      // 2 להוציא מהערה
+  // const [filterBy, setFilterBy] = useState(emailService.getFilterFromParams(searchParams));
   const [filterBy, setFilterBy] = useState(emailService.getDefaultFilter());
+
   const [unreadCount, SetunreadCount] = useState(0);
 
   useEffect(() => {
+    // Sanitize filterBy
+    // 1 להוציא מהערה
+    // setSearchParams(filterBy);;
     loadEmail();
   }, [filterBy, unreadCount]);
 
   async function loadEmail() {
     try {
       const {emails, unreadCount} = await emailService.query(filterBy);
-
       setEmails(emails);
       SetunreadCount(unreadCount);
     } catch (error) {

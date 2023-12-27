@@ -8,6 +8,7 @@ export const emailService = {
     getById,
     createEmail,
     getDefaultFilter,
+    getFilterFromParams,
 }
 
 const STORAGE_KEY = 'emails'
@@ -43,7 +44,7 @@ async function query(filterBy) {
     if (filterBy) {
         const { status, txt, isRead } = filterBy;
 
-        if (isRead != null) {
+        if (isRead != undefined) {
             filteredEmails = filteredEmails.filter(email => email.isRead === isRead 
                 &&( email.subject.toLowerCase().includes(txt.toLowerCase()) 
                 || email.body.toLowerCase().includes(txt.toLowerCase())));
@@ -99,6 +100,15 @@ function save(emailToSave) {
     }
 }
 
+function getFilterFromParams(searchParams) {
+    const defaultFilter = getDefaultFilter()
+    const filterBy = {}
+    for (const field in defaultFilter) {
+        filterBy[field] = searchParams.get(field) || defaultFilter[field]
+    }
+    console.log('filterBy:', filterBy);
+    return filterBy
+}
 
 function createEmail(subject = '', body = '', isRead = undefined, isStarred = false, removedAt = null, from = loggedinUser.email, to = '') {
     return {
@@ -132,7 +142,7 @@ function _createEmails() {
             {   id: 'e102',
                 subject: 'vacation in Berlin',
                 body: 'Would love to catch up sometimes2',
-                isRead: true,
+                isRead: false,
                 isStarred: true,
                 sentAt : '2022-05-05T00:00:00.000Z',
                 removedAt : null,
