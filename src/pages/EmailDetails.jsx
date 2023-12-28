@@ -9,6 +9,8 @@ export function EmailDetails() {
   const [email, setEmail] = useState(null);
   const navigate = useNavigate();
 
+  // const [filterBy, setFilterBy] = useState(emailService.getDefaultFilter());
+
   useEffect(() => {
     loadEmail();
   }, [params.emailId]);
@@ -39,9 +41,18 @@ export function EmailDetails() {
 
   }
 
+  // function onSetFilter(filterBy) {
+  //   setFilterBy((prevFilter) => ({ ...prevFilter, ...filterBy }));
+  // }
+
+
+  // const { status, txt, isRead } = filterBy;
   if (!email) return <div>Loding email...</div>;
+  
   return (
     <section className="email-details">
+ 
+    
         <h1>EmailDetails</h1>
         <p>subject: {email.subject}</p>
         <p>body: {email.body}</p>

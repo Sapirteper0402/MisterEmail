@@ -102,11 +102,15 @@ function save(emailToSave) {
 
 function getFilterFromParams(searchParams) {
     const defaultFilter = getDefaultFilter()
+   
     const filterBy = {}
+
     for (const field in defaultFilter) {
         filterBy[field] = searchParams.get(field) || defaultFilter[field]
     }
-    console.log('filterBy:', filterBy);
+    filterBy.isRead = filterBy.isRead === 'true' ? true : filterBy.isRead === 'false' ? false : undefined;
+
+    // console.log('filterBy:', filterBy)
     return filterBy
 }
 
