@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { emailService } from "../services/email.service";
 import { Link, useNavigate, useOutletContext } from "react-router-dom";
+import { IoCloseOutline } from "react-icons/io5";
+
+
 
 export function EmailCompose() {
 
@@ -26,20 +29,24 @@ export function EmailCompose() {
     const { to, subject, body } = email;
   return (
     <section className="email-compose">
-    <Link to="/EmailIndex"><button className="close-btn">X</button></Link>
-      <h1>Composey</h1>
+      <section className="head-compose">
+        <h2>New Message</h2>
+        <Link to="/EmailIndex"><button className="close-btn">X</button></Link>
+      </section>
+
       <form onSubmit={onSaveEmail}>
-        <label htmlFor="to">To</label>
-        <input type="text" name="to" id="to" value={to} onChange={handleChange}></input>
+        <label htmlFor="to" hidden>To</label>
+        <input className="input-header" placeholder="To" type="text" name="to" id="to" value={to} onChange={handleChange}/>
 
-        <label htmlFor="subject">Subject</label>
-        <input type="text" name="subject" id="subject" value={subject} onChange={handleChange}></input>
+        <label htmlFor="subject" hidden>Subject</label>
+        <input className="input-header" placeholder="subject" type="text" name="subject" id="subject" value={subject} onChange={handleChange}/>
 
-        <label htmlFor="body">Body</label>
-        <input type="text" name="body" id="body" value={body} onChange={handleChange}></input>
+        <label htmlFor="body" hidden>Body</label>
+        <textarea className="input-body" type="text" name="body" id="body" value={body} onChange={handleChange}/>
 
-        <button>Send</button>
+        <button className="send-btn">Send</button>
       </form>
+      
     </section>
   );
 }

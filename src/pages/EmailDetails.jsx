@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useNavigate } from "react-router"
+import { useNavigate } from "react-router";
 import { emailService } from "../services/email.service";
 // import { EmailFolderList } from "../cmps/EmailFolderList";
+import { GoTrash } from "react-icons/go";
+import { BiArrowBack } from "react-icons/bi";
 
 export function EmailDetails() {
   const params = useParams();
@@ -15,12 +17,11 @@ export function EmailDetails() {
     loadEmail();
   }, [params.emailId]);
 
-
   async function loadEmail() {
     try {
       const email = await emailService.getById(params.emailId);
       // Confirmation that isRead us true
-      if(email.isRead != true){
+      if (email.isRead != true) {
         email.isRead = true;
         await emailService.save(email);
       }
@@ -38,31 +39,33 @@ export function EmailDetails() {
     } catch (error) {
       console.log("error:", error);
     }
-
   }
 
   // function onSetFilter(filterBy) {
   //   setFilterBy((prevFilter) => ({ ...prevFilter, ...filterBy }));
   // }
 
-
   // const { status, txt, isRead } = filterBy;
   if (!email) return <div>Loding email...</div>;
-  
+
   return (
     <section className="email-details">
- 
-    
-        <h1>EmailDetails</h1>
-        <p>subject: {email.subject}</p>
-        <p>body: {email.body}</p>
-        <button onClick={onRemoveEmail}>מחיקה</button>
-        <Link to={`/EmailIndex`}>back</Link>
+      <Link to={`/EmailIndex`}>
+        <button className="back-btn">
+          <BiArrowBack className="icon-btn" />
+        </button>
+      </Link>
+      <button className="trash-btn" onClick={onRemoveEmail}>
+        <GoTrash className="icon-btn" />
+      </button>
+      <section>
+        <h1>{email.subject}</h1>
+        <p className="email-from">{email.from}</p>
+        <p>{email.body}</p>
+      </section>
     </section>
   );
 }
-
-
 
 // <section className="aside-EIndex">
 // <EmailFolderList filterBy={{ status }} onSetFilter={onSetFilter} />

@@ -73,6 +73,7 @@ export function EmailIndex() {
       <section className="main-EIndex">
         <EmailFilter filterBy={{ isRead }} onSetFilter={onSetFilter} />
         <EmailList emails={emails} onUpdateEmail={onUpdateEmail} />
+        
       </section>
 
       <Outlet context={{ onAddEmail }} />
