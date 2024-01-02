@@ -5,18 +5,27 @@ import { EmailList } from "../cmps/EmailList";
 import { SearchFilter } from "../cmps/SearchFilter";
 import { EmailFilter } from "../cmps/EmailFilter";
 import { EmailFolderList } from "../cmps/EmailFolderList";
-import { Outlet, useSearchParams } from "react-router-dom";
+import { Outlet, useParams, useSearchParams } from "react-router-dom";
+import { EmailCompose } from "../cmps/EmailCompose";
 
 export function EmailIndex() {
   const [searchParams, setSearchParams] = useSearchParams()
   const [emails, setEmails] = useState(null)
-
+  // const params = useParams();
+ const [composeParam, setComposeParam] = useSearchParams();
   const [filterBy, setFilterBy] = useState(emailService.getFilterFromParams(searchParams))
   // const [filterBy, setFilterBy] = useState(emailService.getDefaultFilter())
-
+  
   const [unreadCount, SetunreadCount] = useState(0)
+  const { emailId } = useParams();
+  // נסיון להכניס את שם התקייה בקישור בדרך יוז פראם
+  //  const folder1 = !folder ? 'inbox' : folder
+  //  console.log('folder1', folder1);
+  // console.log('params.folder', params.folder)
+  // console.log('folder', folder)
 
   useEffect(() => {
+    
     // Sanitize filterBy
     setSearchParams(filterBy)
     loadEmail()
@@ -38,10 +47,12 @@ export function EmailIndex() {
   // onSetStarAndRead
   async function onUpdateEmail(newEmail) {
     try{
-      const saveEmail = await emailService.save(newEmail)
+      await emailService.save(newEmail)
+
+      // const saveEmail = await emailService.save(newEmail)
       // לשנות הסטייט במקום לטעון מחדש
-      // loadEmail();
-      setEmails((prevEmails) => prevEmails.map(email => email.id === saveEmail.id ? saveEmail : email))
+      loadEmail();
+      // setEmails((prevEmails) => prevEmails.map(email => email.id === saveEmail.id ? saveEmail : email))
     }catch (error) {
       console.log("Faild to save email", error)
     }
@@ -60,6 +71,22 @@ export function EmailIndex() {
     }
   }
 
+
+  async function onRemoveEmail(newEmail) {
+    try {
+      await emailService.remove(newEmail.id);
+      loadEmail();
+    } catch (error) {
+      console.log("error:", error);
+    }
+  }
+
+
+  
+  function onOpenCompose(openComposeObj) {
+    setComposeParam(openComposeObj)
+  }
+
   if (!emails) return <div>Loading...</div>
   const { status, txt, isRead } = filterBy
   return (
@@ -68,15 +95,20 @@ export function EmailIndex() {
         <SearchFilter filterBy={{ txt }} onSetFilter={onSetFilter} />
       </section>
       <section className="aside-EIndex">
-        <EmailFolderList filterBy={{ status }} unreadCount={unreadCount} onSetFilter={onSetFilter} />
+        <EmailFolderList filterBy={{ status }} unreadCount={unreadCount} onSetFilter={onSetFilter} onOpenCompose={onOpenCompose} />
       </section>
       <section className="main-EIndex">
+      {!emailId && <>
         <EmailFilter filterBy={{ isRead }} onSetFilter={onSetFilter} />
-        <EmailList emails={emails} onUpdateEmail={onUpdateEmail} />
-        
+        <EmailList emails={emails} onUpdateEmail={onUpdateEmail} onRemoveEmail={onRemoveEmail}/>
+        </>
+      }
+     {emailId && <Outlet />} 
       </section>
-
-      <Outlet context={{ onAddEmail }} />
+      {composeParam.get('compose') && <EmailCompose onAddEmail={onAddEmail} />}
+      
     </section>
   );
 }
+// <Outlet context={{ onAddEmail }} />EmailDetails
+// <Outlet />

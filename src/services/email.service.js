@@ -38,6 +38,7 @@ _createEmails()
 
 async function query(filterBy) {
     const emails = await storageService.query(STORAGE_KEY);
+    // emails.filter(email => )
     let filteredEmails = emails;
     const unreadCount = emails.filter(email => (email.to === 'user@appsus.com') && email.isRead === false);
 
@@ -56,7 +57,7 @@ async function query(filterBy) {
         }
            switch (status){
             case 'inbox': 
-            filteredEmails = filteredEmails.filter(email => email.to === loggedinUser.email);
+            filteredEmails = filteredEmails.filter(email => email.to === loggedinUser.email && email.removedAt === null);
             return {emails: filteredEmails, unreadCount: unreadCount.length};
             // return filteredEmails;
 
@@ -66,9 +67,13 @@ async function query(filterBy) {
             // return filteredEmails;
             
             case 'sent': 
-            filteredEmails = filteredEmails.filter(email => email.from === loggedinUser.email);
+            filteredEmails = filteredEmails.filter(email => email.from === loggedinUser.email && email.removedAt === null);
             return {emails: filteredEmails, unreadCount: unreadCount.length};
             // return filteredEmails;
+
+            case 'trash': 
+            filteredEmails = filteredEmails.filter(email => email.removedAt != null);
+            return {emails: filteredEmails, unreadCount: unreadCount.length};
            }
            
     }

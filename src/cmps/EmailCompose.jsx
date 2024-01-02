@@ -1,40 +1,69 @@
 import { useState } from "react";
 import { emailService } from "../services/email.service";
-import { Link, useNavigate, useOutletContext } from "react-router-dom";
-import { IoCloseOutline } from "react-icons/io5";
+import { Link, useNavigate } from "react-router-dom";
+// import { IoCloseOutline } from "react-icons/io5";
 
 
 
-export function EmailCompose() {
+export function EmailCompose({ onAddEmail }) {
 
     const [email, setEmail] = useState(emailService.createEmail());
-    const { onAddEmail } = useOutletContext();
     const navigate = useNavigate();
-
+    const [isMinimized, setIsMinimized] = useState(false)
+    const [isFullScreen, setIsFullScreen] = useState(false);
+    // const formClass = isMinimized? "minimize-message" : "unminimize-message"
+    const formClass = isMinimized? "minimize-message" : "unminimize-message"
+    const composeClass = isFullScreen?  "email-compose-full-screen" : "email-compose"
     function handleChange({ target }){
         let { name: field, value} = target;
         setEmail((prevEmail) => ({...prevEmail, [field]: value, isRead: true}));
     }
-    
+
     async function onSaveEmail(ev){
         ev.preventDefault();
         try {          
            await onAddEmail(email);
-           navigate('/EmailIndex');
+           navigate('/mail');
         } catch (err) {
             console.log('Had issues saving email', err);
         }
     }
 
+// function onFullAndMinimize(view ,ev) {
+//   ev.stopPropagation();
+//   if (view === "Minimize") {
+//     setIsMinimized((prevIsMinimized) => !prevIsMinimized)
+//     setIsFullScreen(false)
+//   } 
+//   else {
+//     setIsFullScreen((previsFullScreen) => !previsFullScreen)
+//     setIsMinimized(false)
+//   }
+// }
+
+    function onMinimize(ev){
+      ev.stopPropagation();
+      setIsMinimized((prevIsMinimized) => !prevIsMinimized)
+      setIsFullScreen(false)
+    }
+
+    function onFullScreen(ev){
+      ev.stopPropagation();
+      setIsFullScreen((previsFullScreen) => !previsFullScreen)
+      setIsMinimized(false)
+    }
+
     const { to, subject, body } = email;
   return (
-    <section className="email-compose">
-      <section className="head-compose">
+    <section className={composeClass}>
+      <section className="head-compose" onClick={onMinimize}>
         <h2>New Message</h2>
-        <Link to="/EmailIndex"><button className="close-btn">X</button></Link>
+        <Link to="/mail"><button className="close-btn">X</button></Link>
+        <button onClick={onFullScreen} className="close-btn">+</button>
+        <button onClick={onMinimize} className="close-btn">-</button>
       </section>
 
-      <form onSubmit={onSaveEmail}>
+      <form onSubmit={onSaveEmail} className={formClass}>
         <label htmlFor="to" hidden>To</label>
         <input className="input-header" placeholder="To" type="text" name="to" id="to" value={to} onChange={handleChange}/>
 

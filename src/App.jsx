@@ -5,27 +5,25 @@ import { HomePage } from "./pages/HomePage";
 import { EmailIndex } from "./pages/EmailIndex";
 import { EmailDetails } from "./pages/EmailDetails";
 import { AppHeader } from "./cmps/AppHeader";
-import { EmailCompose } from "./cmps/EmailCompose";
-// import { useState } from "react";
+
 
 export function App() {
-  //   const [page, setPage] = useState("HomePage");
   return (
     <Router>
       <section className="main-app">
-
-       <AppHeader/>
+        <AppHeader />
 
         <main className="container">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/EmailIndex" element={<EmailIndex />}>
-             <Route path="/EmailIndex/add" element={<EmailCompose />} />
-            </Route>
-            <Route path="/EmailIndex/:emailId" element={<EmailDetails />} />
-            <Route path="/AboutUs" element={<AboutUs />} />
-          </Routes>
-        </main>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/mail" element={<EmailIndex />} />
+
+          <Route path="/mail/:folder" element={<EmailIndex />}>
+            <Route path="/mail/:folder/:emailId" element={<EmailDetails />} /> 
+          </Route>
+          <Route path="/AboutUs" element={<AboutUs />} />
+        </Routes>
+      </main>
 
         <footer>
           <section className="container">Mails 2023 &copy;</section>
@@ -34,3 +32,54 @@ export function App() {
     </Router>
   );
 }
+
+// <Route path="/mail/:folder" element={<EmailIndex />} />
+
+// <main className="container">
+// <Routes>
+//   <Route path="/" element={<HomePage />} />
+//   <Route path="/mail" element={<EmailIndex />}>
+//     <Route path="/mail/add" element={<EmailCompose />} /> 
+//   </Route>
+//   <Route path="/mail/:emailId" element={<EmailDetails />} />
+//   <Route path="/AboutUs" element={<AboutUs />} />
+// </Routes>
+// </main>
+
+
+
+// <main className="container">
+//           <Routes>
+//             <Route path="/" element={<HomePage />} />
+//             <Route path="/mail" element={<EmailIndex />}>
+//               <Route path="/mail/add" element={<EmailCompose />} /> 
+//             </Route>
+//             <Route path="/mail/:emailId" element={<EmailDetails />} />
+//             <Route path="/AboutUs" element={<AboutUs />} />
+//           </Routes>
+//         </main>
+
+
+
+// <main className="container">
+//           <Routes>
+//             <Route path="/" element={<HomePage />} />
+//             <Route path="/mail" element={<EmailIndex />}/>
+
+//             <Route path="/mail/:emailId" element={<EmailDetails />} />
+//             <Route path="/AboutUs" element={<AboutUs />} />
+//           </Routes>
+//         </main>
+
+
+// <main className="container">
+//           <Routes>
+//             <Route path="/" element={<HomePage />} />
+
+//             <Route path="/mail" element={<EmailIndex />}>
+//               <Route path="/mail/:emailId" element={<EmailDetails />} /> 
+//             </Route>
+
+//             <Route path="/AboutUs" element={<AboutUs />} />
+//           </Routes>
+//         </main>

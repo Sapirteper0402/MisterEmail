@@ -35,7 +35,7 @@ export function EmailDetails() {
     try {
       await emailService.remove(email.id);
       console.log(email.id);
-      navigate(`/EmailIndex`);
+      navigate(`/mail/:folder`);
     } catch (error) {
       console.log("error:", error);
     }
@@ -50,7 +50,7 @@ export function EmailDetails() {
 
   return (
     <section className="email-details">
-      <Link to={`/EmailIndex`}>
+      <Link to={`/mail/:folder`}>
         <button className="back-btn">
           <BiArrowBack className="icon-btn" />
         </button>
@@ -71,7 +71,7 @@ export function EmailDetails() {
 // <EmailFolderList filterBy={{ status }} onSetFilter={onSetFilter} />
 // </section>
 
-// <section className="EmailIndex">
+// <section className="mail">
 // <section className="header-EIndex">
 //   <SearchFilter filterBy={{ txt }} onSetFilter={onSetFilter} />
 // </section>

@@ -50,7 +50,7 @@ padding: 1em;
 .email-details .trash-btn, .email-details .back-btn {
     border: none;
     background-color: white;
-    margin: 0.5em;
+    margin-inline-end: 0.5em;
     padding: 0.7em 0.7em 0.5em 0.7em;
     border-radius: 20px;
 }

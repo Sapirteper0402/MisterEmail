@@ -65,4 +65,37 @@
     grid-area: date;
     text-align: right;
     padding-inline-end: 0.5em;
+    display: block;
   }
+
+
+  .delete-btn {
+    display: none;
+    cursor: pointer;
+    grid-area: date;
+    border: none;
+    background-color: #f2edee00;
+    padding: 0.4em 0.5em 0.2em 0.5em;
+    border-radius: 20px;
+    width: fit-content;
+    margin-left: auto;
+  }
+
+  .delete-btn:hover {
+    background-color: #e0e0e4;
+  }
+  
+
+.email-read:hover .email-date,
+.email-unread:hover .email-date {
+display: none;
+}
+
+.email-read:hover .delete-btn,
+  .email-unread:hover .delete-btn {
+  display: block;
+}
+
+.email-preview a:hover {
+  text-decoration: none;
+}
