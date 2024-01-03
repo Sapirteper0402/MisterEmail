@@ -2,6 +2,14 @@ import { useState } from "react";
 import { emailService } from "../services/email.service";
 import { Link, useNavigate } from "react-router-dom";
 // import { IoCloseOutline } from "react-icons/io5";
+// import { FaMinus } from "react-icons/fa";
+import { LuMinimize2 } from "react-icons/lu";
+import { HiMiniMinusSmall } from "react-icons/hi2";
+import { AiOutlineClose } from "react-icons/ai";
+import { MdOutlineFullscreen } from "react-icons/md";
+
+
+
 
 
 
@@ -28,6 +36,9 @@ export function EmailCompose({ onAddEmail }) {
             console.log('Had issues saving email', err);
         }
     }
+
+
+
 
 // function onFullAndMinimize(view ,ev) {
 //   ev.stopPropagation();
@@ -58,9 +69,9 @@ export function EmailCompose({ onAddEmail }) {
     <section className={composeClass}>
       <section className="head-compose" onClick={onMinimize}>
         <h2>New Message</h2>
-        <Link to="/mail"><button className="close-btn">X</button></Link>
-        <button onClick={onFullScreen} className="close-btn">+</button>
-        <button onClick={onMinimize} className="close-btn">-</button>
+        <Link to="/mail"><button className="close-btn"><AiOutlineClose /></button></Link>
+        <button onClick={onFullScreen} className="close-btn"><MdOutlineFullscreen /></button>
+        <button onClick={onMinimize} className="close-btn"><HiMiniMinusSmall /></button>
       </section>
 
       <form onSubmit={onSaveEmail} className={formClass}>
@@ -80,3 +91,5 @@ export function EmailCompose({ onAddEmail }) {
   );
 }
 
+
+// <LuMinimize2 />
