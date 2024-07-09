@@ -1,6 +1,7 @@
 .app-header {
-    background: #e91e63;
+    /* background: #e91e63; */
     color: white;
+    background: #0B132B;
 
 }
 
@@ -21,7 +22,7 @@
 }
 
 .app-header nav a:not(:last-child) {
-    margin-right: 10px;
+    margin-right: 25px;
 }
 
 .app-header section.container>section {

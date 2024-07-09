@@ -44,7 +44,7 @@ padding: 1em;
 }
 
 .email-from {
-    font-weight: 600;
+    /* font-weight: 600; */
 }
 
 .email-details .trash-btn, .email-details .back-btn {

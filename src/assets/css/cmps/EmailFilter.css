@@ -43,10 +43,11 @@
 
 .search-input {
     padding: 1em 2em;
-    border-radius: 7px;
+    border-radius: 24px;
     border: none;
     margin-bottom: 1em;
-    background-color: #E3EBF4;
+    background-color: #EAF1FB;
     padding-left: 30px; /* Ensure enough space for the icon */
+    width: 30em;
 }
 

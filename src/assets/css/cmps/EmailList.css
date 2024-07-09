@@ -4,3 +4,7 @@ ul.email-list{
     padding: 0%;
 }
 
+
+.email-list li:first-child {
+    border-top: 1.5px solid #EDEDED;
+  }

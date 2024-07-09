@@ -20,7 +20,7 @@ export function SearchFilter({ filterBy, onSetFilter }) {
             <label htmlFor="txt" hidden>Search email</label>
             <div className="search-container">
                 <IoSearchOutline className="search-icon" />
-                <input className="search-input" onChange={handleChange} id="txt" value={txt} name="txt" type="text" placeholder="Search" />
+                <input className="search-input" onChange={handleChange} id="txt" value={txt} name="txt" type="text" placeholder="Search mail" />
             </div>
         </form>
   );
